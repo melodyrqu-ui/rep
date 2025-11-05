@@ -1,11 +1,73 @@
 <?php
-// Enter your code here, enjoy!
-$array = array("1" => "PHP code tester Sandbox Online",
-    "emoji" => "😀 😃 😄 😁 😆", 5 , 5 => 89009,
-    "Random number" => rand(100,999),
-    "PHP Version" => phpversion()
-);
+// --- 1. Database connection ---
+$servername = "localhost";
+$username = "root";      // change if needed
+$password = "";          // change if needed
+$dbname = "myDatabase"; // change to your DB name
 
-foreach( $array as $key => $value ){
-    echo $key."\t=>\t".$value."\n";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// --- 2. Query the database ---
+$sql = "SELECT value1 FROM itTable";  // Example table and columns
+$result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Data</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #eef;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Database Data</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+
+  <?php
+  // --- 3. Output rows dynamically ---
+  if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+          echo "<tr id='cell" . $row['id'] . "'>";
+          echo "<td>" . $row['id'] . "</td>";
+          echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+          echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+          echo "</tr>";
+      }
+  } else {
+      echo "<tr><td colspan='3'>No data found</td></tr>";
+  }
+
+  $conn->close();
+  ?>
+</table>
+
+</body>
+</html>
