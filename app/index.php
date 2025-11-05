@@ -1,4 +1,5 @@
 <?php
+$ php -t app -S localhost:8080
 // --- 1. Database connection ---
 $servername = "localhost";
 $username = "ba367aaa7dac80008fdb8166dd25";      // change if needed
@@ -66,7 +67,6 @@ $result = $conn->query($sql);
   }
 
   $conn->close();
-$ php -t app -S localhost:8080
   ?>
 </table>
 
