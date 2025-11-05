@@ -1,7 +1,7 @@
 <?php
-$ php -t app -S localhost:8080
+wasmer deploy
 // --- 1. Database connection ---
-$servername = "localhost";
+$servername = "db.fr-pari1.bengt.wasmernet.com";
 $username = "ba367aaa7dac80008fdb8166dd25";      // change if needed
 $password = "0690ba36-7aaa-7f98-8000-73a0e9e88b08";          // change if needed
 $dbname = "myDatabase"; // change to your DB name
