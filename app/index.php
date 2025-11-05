@@ -66,10 +66,10 @@ $result = $conn->query($sql);
   }
 
   $conn->close();
+$ php -t app -S localhost:8080
   ?>
 </table>
 
 </body>
 </html>
 
-$wasmer run .
